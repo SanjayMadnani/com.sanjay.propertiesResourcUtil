@@ -8,7 +8,7 @@
 	<description>
 		Properties, ResouceBundle Utilities: common requirement of a java project
 	</description>
-
+	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
