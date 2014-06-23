@@ -14,6 +14,9 @@ import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Utility for getting i18n value from Properties file.
  * 
@@ -23,6 +26,7 @@ import java.util.ResourceBundle;
  * @see MessageFormat
  */
 public final class ResourceBundleUtil {
+    private static final Logger logger = LogManager.getLogger(ResourceBundleUtil.class);
 
     /**
      * Private Construct to restrict object creation.
@@ -40,7 +44,9 @@ public final class ResourceBundleUtil {
      * @return a resource bundle for the given base name and locale.
      */
     private static ResourceBundle getResourceBundle(String baseName, Locale locale) {
+        logger.debug("Invoking getResourceBundle: Loading Bundle...");
         ResourceBundle bundle = ResourceBundle.getBundle(baseName, (locale == null) ? Locale.getDefault() : locale);
+        logger.debug("Resouce Bundle loaded successfully");
         return bundle;
     }
 
@@ -55,11 +61,15 @@ public final class ResourceBundleUtil {
      * @exception ClassCastException if the object found for the given key is not a string.
      * @return the string for the given key.
      */
-    public static String getString(String key, String baseName, Locale locale) {
+    public static String getStringMessage(String key, String baseName, Locale locale) {
+        logger.debug("Invoking getStringMessage...");
         try {
             ResourceBundle bundle = getResourceBundle(baseName, locale);
+            logger.debug("Retrieved Key successfully");
             return bundle.getString(key);
         } catch (NullPointerException | MissingResourceException | ClassCastException ex) {
+            logger.error(ex.getMessage(), ex);
+            logger.debug("Exception occured while retrieving value corresponding to key", ex);
             return null;
         }
     }
@@ -80,10 +90,13 @@ public final class ResourceBundleUtil {
      * @return the string for the given key.
      */
     public static String getFormatedMessage(String key, String baseName, Locale locale, Object... arguments) {
+        logger.debug("Invoking getFormatedMessage...");
         try {
             ResourceBundle bundle = getResourceBundle(baseName, locale);
             return MessageFormat.format(bundle.getString(key), arguments);
         } catch (NullPointerException | MissingResourceException | ClassCastException ex) {
+            logger.error(ex.getMessage(), ex);
+            logger.debug("Exception occured while retrieving and formatting value corresponding to key", ex);
             return null;
         }
     }
