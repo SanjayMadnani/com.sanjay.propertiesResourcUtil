@@ -65,11 +65,9 @@ public final class ResourceBundleUtil {
         logger.debug("Invoking getStringMessage...");
         try {
             ResourceBundle bundle = getResourceBundle(baseName, locale);
-            logger.debug("Retrieved Key successfully");
             return bundle.getString(key);
         } catch (NullPointerException | MissingResourceException | ClassCastException ex) {
             logger.error(ex.getMessage(), ex);
-            logger.debug("Exception occured while retrieving value corresponding to key", ex);
             return null;
         }
     }
@@ -96,7 +94,6 @@ public final class ResourceBundleUtil {
             return MessageFormat.format(bundle.getString(key), arguments);
         } catch (NullPointerException | MissingResourceException | ClassCastException ex) {
             logger.error(ex.getMessage(), ex);
-            logger.debug("Exception occured while retrieving and formatting value corresponding to key", ex);
             return null;
         }
     }
