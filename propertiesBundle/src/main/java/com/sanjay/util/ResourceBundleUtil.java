@@ -37,7 +37,7 @@ public final class ResourceBundleUtil {
     /**
      * Gets a resource bundle using the specified base name and locale.
      * 
-     * @param baseName - the base name of the resource bundle, a fully qualified class name.
+     * @param baseName - the base name of the resource bundle.
      * @param locale - the locale for which a resource bundle is desired.
      * @exception NullPointerException - if baseName is null.
      * @exception MissingResourceException - if no resource bundle for the specified base name can be found.
@@ -68,6 +68,7 @@ public final class ResourceBundleUtil {
             return bundle.getString(key);
         } catch (NullPointerException | MissingResourceException | ClassCastException ex) {
             logger.error(ex.getMessage(), ex);
+         // TODO throw your custom exception rather than returning null.
             return null;
         }
     }
@@ -94,6 +95,7 @@ public final class ResourceBundleUtil {
             return MessageFormat.format(bundle.getString(key), arguments);
         } catch (NullPointerException | MissingResourceException | ClassCastException ex) {
             logger.error(ex.getMessage(), ex);
+         // TODO throw your custom exception rather than returning null.
             return null;
         }
     }
