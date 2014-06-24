@@ -37,6 +37,7 @@ public final class BundleUtil {
      * @exception NullPointerException - if resourceBundleName is null.
      */
     public BundleUtil(final String resourceBundleName) {
+        logger.debug("Invoking 1 arg Constructor by bundle: " + resourceBundleName + "...");
         try {
             this.resourceBundle = ResourceBundle.getBundle(resourceBundleName);
         } catch (Exception e) {
@@ -54,6 +55,7 @@ public final class BundleUtil {
      * @exception MissingResourceException - if no resource bundle for the specified base name can be found.
      */
     public BundleUtil(final String resourceBundleName, final Locale locale) {
+        logger.debug("Invoking 2 args Constructor by bundle: " + resourceBundleName + "...");        
         try {
             this.resourceBundle = ResourceBundle.getBundle(resourceBundleName, locale);
         } catch (Exception e) {

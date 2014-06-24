@@ -9,7 +9,64 @@
  * See the GNU General Public License V2 for more details. */
 package com.sanjay.util.proper;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.text.MessageFormat;
+import java.util.Properties;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+/**
+ * Utility for Loading & Retrieving Properties values.
+ * 
+ * @author SANJAY
+ * @see Properties
+ * @see MessageFormat
+ */
 public final class PropertyUtil {
 
+    private static final Logger logger = LogManager.getLogger(PropertyUtil.class);
+    private transient Properties properties;
+
+    /**
+     * Construct Object using the specified resourceBundleName.
+     * 
+     * @param baseName - the base name of the resource bundle.
+     * @exception NullPointerException - if resourceBundleName is null.
+     */
+    public PropertyUtil(final String baseName) {
+        logger.debug("Invoking Constructor with baseName: " + baseName + "...");
+        try {
+            properties = new Properties();
+            Reader reader = new FileReader(baseName);
+            properties.load(reader);
+        } catch (IOException e) {
+            logger.error(e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Returns value corresponding to key.
+     * 
+     * @param key the key whose associated value is to be returned.
+     * @return value corresponding to key.
+     */
+    public Object getValue(String key) {
+        logger.debug("Invoking getValue by passing key: " + key + "...");
+        return properties.get(key);
+    }
+
+    /**
+     * Returns formated String value corresponding to key.
+     * 
+     * @param key the key whose associated value is to be returned.
+     * @param arguments - parameters for formatting string.
+     * @return formated string for the given key.
+     */
+    public String getFormatedStringValue(String key, Object... arguments) {
+        logger.debug("Invoking getFormatedStringValue...");
+        return MessageFormat.format(properties.getProperty(key), arguments);
+    }
 }

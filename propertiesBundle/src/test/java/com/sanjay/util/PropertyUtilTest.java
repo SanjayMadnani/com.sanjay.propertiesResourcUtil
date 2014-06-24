@@ -7,7 +7,7 @@
  * 
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY.
  * See the GNU General Public License V2 for more details. */
-package com.sanjay.util.proper;
+package com.sanjay.util;
 
 import static org.junit.Assert.*;
 
@@ -16,10 +16,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @author sanjay.madnani
+ * @author SANJAY
  *
  */
-public class BundleUtilTest {
+public class PropertyUtilTest {
 
     /**
      * @throws java.lang.Exception
@@ -36,18 +36,18 @@ public class BundleUtilTest {
     }
 
     /**
-     * Test method for {@link com.sanjay.util.proper.BundleUtil#getStringMessage(java.lang.String)}.
+     * Test method for {@link com.sanjay.util.PropertyUtil#getValue(java.lang.String, java.lang.String)}.
      */
     @Test
-    public final void testGetStringMessage() {
+    public final void testGetValue() {
         fail("Not yet implemented");
     }
 
     /**
-     * Test method for {@link com.sanjay.util.proper.BundleUtil#getFormatedMessage(java.lang.String, java.lang.Object[])}.
+     * Test method for {@link com.sanjay.util.PropertyUtil#getFormatedStringValue(java.lang.String, java.lang.String, java.lang.Object[])}.
      */
     @Test
-    public final void testGetFormatedMessage() {
+    public final void testGetFormatedStringValue() {
         fail("Not yet implemented");
     }
 

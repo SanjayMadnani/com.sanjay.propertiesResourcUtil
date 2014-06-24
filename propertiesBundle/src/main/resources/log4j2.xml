@@ -7,11 +7,9 @@
 				<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
 			</PatternLayout>
 			<Policies>
-				<TimeBasedTriggeringPolicy />
-				<SizeBasedTriggeringPolicy size="0.001 MB" />
+				<SizeBasedTriggeringPolicy size="2 KB" />
 			</Policies>
 			<DefaultRolloverStrategy max="10" />
-			<TimeBasedTriggeringPolicy />
 		</RollingFile>
 
 		<Console name="Console" target="SYSTEM_OUT">

@@ -78,7 +78,7 @@ public final class ResourceBundleUtil {
      * {@link #getResourceBundle}.
      * 
      * @param key - the key for the desired string.
-     * @param baseName - the base name of the resource bundle, a fully qualified class name.
+     * @param baseName - the base name of the resource bundle.
      * @param locale - the locale for which a resource bundle is desired.
      * @param arguments - parameters for formatting string.
      * @exception NullPointerException if key is null.
@@ -86,7 +86,7 @@ public final class ResourceBundleUtil {
      * @exception ClassCastException if the object found for the given key is not a string.
      * @exception IllegalArgumentException if the value of key is invalid, or if an argument in the arguments array is
      *                not of the type expected by the format element(s) that use it.
-     * @return the string for the given key.
+     * @return formated string for the given key.
      */
     public static String getFormatedMessage(String key, String baseName, Locale locale, Object... arguments) {
         logger.debug("Invoking getFormatedMessage...");

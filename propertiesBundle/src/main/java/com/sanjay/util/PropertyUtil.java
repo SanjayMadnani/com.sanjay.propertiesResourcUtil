@@ -15,6 +15,9 @@ import java.io.Reader;
 import java.text.MessageFormat;
 import java.util.Properties;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Utility for Loading & Retrieving Properties values.
  * 
@@ -24,6 +27,7 @@ import java.util.Properties;
  */
 public final class PropertyUtil {
 
+    private static final Logger logger = LogManager.getLogger(PropertyUtil.class);
     /**
      * Private Construct to restrict object creation.
      */
@@ -37,37 +41,42 @@ public final class PropertyUtil {
      * @return Properties loaded using argument.
      */
     private static Properties loadProperty(String propertyName) {
+        logger.debug("Invoking loadProperty...");
         try {
             Properties properties = new Properties();
             Reader reader = new FileReader(propertyName);
             properties.load(reader);
             return properties;
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
             return null;
         }
     }
 
     /**
-     * Returns Object value corresponding to properyName.
+     * Returns key value corresponding to properyName.
+     * 
      * @param key the key whose associated value is to be returned.
-     * @param properyName
-     * @return
+     * @param propertyName String property name.
+     * @return value corresponding to key by passed property.
      */
     public static Object getValue(String key, String properyName) {
+        logger.debug("Invoking getValue...");
         Properties properties = loadProperty(properyName);
         return properties.get(key);
     }
 
     /**
+     * Returns formated String value corresponding to key of propertyName.
      * 
      * @param key the key whose associated value is to be returned.
-     * @param property
-     * @param arguments
-     * @return
+     * @param properyName String name of property.
+     * @param arguments - parameters for formatting string.
+     * @return formated string for the given key.
      */
-    public static String getFormatedStringValue(String key, String property, Object... arguments) {
-        Properties properties = loadProperty(property);
+    public static String getFormatedStringValue(String key, String properyName, Object... arguments) {
+        logger.debug("Invoking getFormatedStringValue...");
+        Properties properties = loadProperty(properyName);
         return MessageFormat.format(properties.getProperty(key), arguments);
     }
 }
