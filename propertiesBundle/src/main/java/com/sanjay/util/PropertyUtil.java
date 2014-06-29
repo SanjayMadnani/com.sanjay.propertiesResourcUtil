@@ -9,9 +9,8 @@
  * See the GNU General Public License V2 for more details. */
 package com.sanjay.util;
 
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
+import java.io.InputStream;
 import java.text.MessageFormat;
 import java.util.Properties;
 
@@ -43,9 +42,9 @@ public final class PropertyUtil {
     private static Properties loadProperty(String propertyName) {
         logger.debug("Invoking loadProperty...");
         try {
+            InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(propertyName);
             Properties properties = new Properties();
-            Reader reader = new FileReader(propertyName);
-            properties.load(reader);
+            properties.load(is);
             return properties;
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
