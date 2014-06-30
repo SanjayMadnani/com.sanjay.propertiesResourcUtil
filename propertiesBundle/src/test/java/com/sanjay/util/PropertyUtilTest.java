@@ -16,17 +16,18 @@ import org.junit.Test;
 import com.sanjay.constants.MessagesConstants;
 
 /**
- * @author SANJAY
+ * Test case for PropertyUtil.
  * 
+ * @author SANJAY
+ * @see PropertyUtil
  */
-//TODO load from both src/main/resources & src/test/resources.
 public class PropertyUtilTest {
     /**
      * Test method for {@link com.sanjay.util.PropertyUtil#getValue(java.lang.String, java.lang.String)}.
      */
     @Test
     public final void testGetValue() {
-        assertEquals("root", (String) PropertyUtil.getValue("db.password", MessagesConstants.PROPERTY_FILE));
+        assertEquals("root1", (String) PropertyUtil.getValue("db.password", MessagesConstants.PROPERTY_FILE));
         assertEquals("root",
                 (String) PropertyUtil.getValue("db.password", "src/main/resources", MessagesConstants.PROPERTY_FILE));
     }

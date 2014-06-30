@@ -27,7 +27,6 @@ import org.apache.logging.log4j.Logger;
  * @see Properties
  * @see MessageFormat
  */
-// TODO Class need to be modifiy as per PropertyUtil class of util package.
 public final class PropertyUtil {
 
     private static final Logger logger = LogManager.getLogger(PropertyUtil.class);
@@ -77,17 +76,5 @@ public final class PropertyUtil {
     public Object getValue(String key) {
         logger.debug("Invoking getValue by passing key: " + key + "...");
         return properties.get(key);
-    }
-
-    /**
-     * Returns formated String value corresponding to key.
-     * 
-     * @param key the key whose associated value is to be returned.
-     * @param arguments - parameters for formatting string.
-     * @return formated string for the given key.
-     */
-    public String getFormatedStringValue(String key, Object... arguments) {
-        logger.debug("Invoking getFormatedStringValue...");
-        return MessageFormat.format(properties.getProperty(key), arguments);
     }
 }
