@@ -15,7 +15,11 @@ public final class MessagesConstants {
     private MessagesConstants() {
 
     }
-
+    
+    public static final String PROPERTY_FILE = "common-settings.properties";
+    public static final String BUNDLE_FILE = "common-messages.properties";
+    
+    
     public static final String EMPTY_MAIL_ID = "ERROR.EMAIL.1000";
     public static final String INVALID_EMAIL_ID = "ERROR.EMAIL.1001";
     public static final String INVALID_MOBILE_NUMBER = "ERROR.MOBILE.1000";

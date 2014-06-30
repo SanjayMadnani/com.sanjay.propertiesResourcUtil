@@ -9,8 +9,11 @@
  * See the GNU General Public License V2 for more details. */
 package com.sanjay.util;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Reader;
 import java.text.MessageFormat;
 import java.util.Properties;
 
@@ -27,6 +30,7 @@ import org.apache.logging.log4j.Logger;
 public final class PropertyUtil {
 
     private static final Logger logger = LogManager.getLogger(PropertyUtil.class);
+
     /**
      * Private Construct to restrict object creation.
      */
@@ -36,15 +40,24 @@ public final class PropertyUtil {
     /**
      * Loads a property by propertyName.
      * 
+     * @param path String directory of property.
      * @param propertyName String property name.
      * @return Properties loaded using argument.
      */
-    private static Properties loadProperty(String propertyName) {
-        logger.debug("Invoking loadProperty...");
+    private static Properties loadProperty(String path, String propertyName) {
+        logger.debug("Invoking loadProperty with propertyName: " + propertyName + "...");
         try {
-            InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(propertyName);
             Properties properties = new Properties();
-            properties.load(is);
+            if (path == null) {
+                InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(propertyName);
+                properties.load(is);
+                logger.debug("Property Loaded successfully");
+            } else {
+                logger.debug("Property Path: " + path);
+                Reader reader = new FileReader(new File(path, propertyName));
+                properties.load(reader);
+                logger.debug("Property Loaded successfully");
+            }
             return properties;
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
@@ -59,23 +72,17 @@ public final class PropertyUtil {
      * @param propertyName String property name.
      * @return value corresponding to key by passed property.
      */
-    public static Object getValue(String key, String properyName) {
+    public static Object getValue(String key, String propertyName) {
         logger.debug("Invoking getValue...");
-        Properties properties = loadProperty(properyName);
+        Properties properties = loadProperty(null, propertyName);
         return properties.get(key);
     }
 
-    /**
-     * Returns formated String value corresponding to key of propertyName.
-     * 
-     * @param key the key whose associated value is to be returned.
-     * @param properyName String name of property.
-     * @param arguments - parameters for formatting string.
-     * @return formated string for the given key.
-     */
-    public static String getFormatedStringValue(String key, String properyName, Object... arguments) {
-        logger.debug("Invoking getFormatedStringValue...");
-        Properties properties = loadProperty(properyName);
-        return MessageFormat.format(properties.getProperty(key), arguments);
+    public static Object getValue(String key, String propertyDir, String propertyName) {
+        logger.debug("Invoking getValue for key: " + key + ", directory: " + propertyDir + ", Property Name: " +
+                propertyName + "...");
+        Properties properties = loadProperty(propertyDir, propertyName);
+        return properties.get(key);
     }
+
 }
