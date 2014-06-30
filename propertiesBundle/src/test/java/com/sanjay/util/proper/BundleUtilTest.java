@@ -15,17 +15,22 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.sanjay.constants.MessagesConstants;
+
 /**
  * @author sanjay.madnani
  *
  */
 public class BundleUtilTest {
+    
+    private BundleUtil bundleUtil;
 
     /**
      * @throws java.lang.Exception
      */
     @Before
     public void setUp() throws Exception {
+        bundleUtil = new BundleUtil(MessagesConstants.BUNDLE_FILE);
     }
 
     /**
@@ -33,6 +38,7 @@ public class BundleUtilTest {
      */
     @After
     public void tearDown() throws Exception {
+        bundleUtil = null;
     }
 
     /**
@@ -40,7 +46,7 @@ public class BundleUtilTest {
      */
     @Test
     public final void testGetStringMessage() {
-        fail("Not yet implemented");
+        assertEquals("MOBILE1000: Mobile Number is Invalid.", bundleUtil.getStringMessage(MessagesConstants.INVALID_MOBILE_NUMBER));
     }
 
     /**
@@ -48,7 +54,9 @@ public class BundleUtilTest {
      */
     @Test
     public final void testGetFormatedMessage() {
-        fail("Not yet implemented");
+        String actualResult = bundleUtil.getFormatedMessage(MessagesConstants.REGISTRATION_SUCCESS, "user1", "454585");
+        String expectedResult = "Dear user1, Your Registration Id is 454585.";
+        assertEquals(expectedResult, actualResult);
     }
 
 }
