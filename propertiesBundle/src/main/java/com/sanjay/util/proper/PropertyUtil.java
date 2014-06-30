@@ -25,6 +25,7 @@ import org.apache.logging.log4j.Logger;
  * @see Properties
  * @see MessageFormat
  */
+// TODO Class need to be modifiy as per PropertyUtil class of util package.
 public final class PropertyUtil {
 
     private static final Logger logger = LogManager.getLogger(PropertyUtil.class);

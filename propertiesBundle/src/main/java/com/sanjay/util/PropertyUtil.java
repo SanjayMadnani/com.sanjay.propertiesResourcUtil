@@ -78,6 +78,14 @@ public final class PropertyUtil {
         return properties.get(key);
     }
 
+    /**
+     * Returns key value corresponding to properyName by specified directory.
+     * 
+     * @param key the key whose associated value is to be returned.
+     * @param propertyDir directory path of property.
+     * @param propertyName String name of property.
+     * @return object value of a key defined in property.
+     */
     public static Object getValue(String key, String propertyDir, String propertyName) {
         logger.debug("Invoking getValue for key: " + key + ", directory: " + propertyDir + ", Property Name: " +
                 propertyName + "...");

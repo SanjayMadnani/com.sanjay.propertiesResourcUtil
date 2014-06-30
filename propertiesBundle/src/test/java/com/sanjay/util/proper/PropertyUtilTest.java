@@ -36,14 +36,6 @@ public class PropertyUtilTest {
     }
 
     /**
-     * Test method for {@link com.sanjay.util.proper.PropertyUtil#PropertyUtil(java.lang.String)}.
-     */
-    @Test
-    public final void testPropertyUtil() {
-        fail("Not yet implemented");
-    }
-
-    /**
      * Test method for {@link com.sanjay.util.proper.PropertyUtil#getValue(java.lang.String)}.
      */
     @Test
