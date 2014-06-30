@@ -19,8 +19,10 @@ import org.junit.Test;
  * @author SANJAY
  *
  */
+//TODO Test for both load from src/main/resources & src/test/resources
 public class PropertyUtilTest {
 
+    private PropertyUtil propertyUtil;
     /**
      * @throws java.lang.Exception
      */

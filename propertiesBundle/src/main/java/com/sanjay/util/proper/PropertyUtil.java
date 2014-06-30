@@ -9,8 +9,10 @@
  * See the GNU General Public License V2 for more details. */
 package com.sanjay.util.proper;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Reader;
 import java.text.MessageFormat;
 import java.util.Properties;
@@ -41,7 +43,25 @@ public final class PropertyUtil {
         logger.debug("Invoking Constructor with baseName: " + baseName + "...");
         try {
             properties = new Properties();
-            Reader reader = new FileReader(baseName);
+            InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(baseName);
+            properties.load(inputStream);
+        } catch (IOException e) {
+            logger.error(e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Construct Object using the specified resourceBundleName.
+     * 
+     * @param pathDirectory String directory of baseName.
+     * @param baseName - the base name of the resource bundle.
+     * @exception NullPointerException - if resourceBundleName is null.
+     */
+    public PropertyUtil(final String pathDirectory, final String baseName) {
+        logger.debug("Invoking Constructor with path: " + pathDirectory + ", baseName: " + baseName + "...");
+        try {
+            properties = new Properties();
+            Reader reader = new FileReader(new File(pathDirectory, baseName));
             properties.load(reader);
         } catch (IOException e) {
             logger.error(e.getMessage(), e);

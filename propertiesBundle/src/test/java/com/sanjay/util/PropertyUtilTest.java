@@ -19,6 +19,7 @@ import com.sanjay.constants.MessagesConstants;
  * @author SANJAY
  * 
  */
+//TODO load from both src/main/resources & src/test/resources.
 public class PropertyUtilTest {
     /**
      * Test method for {@link com.sanjay.util.PropertyUtil#getValue(java.lang.String, java.lang.String)}.
