@@ -44,7 +44,7 @@ public final class ResourceBundleUtil {
      * @return a resource bundle for the given base name and locale.
      */
     private static ResourceBundle getResourceBundle(String baseName, Locale locale) {
-        logger.debug("Invoking getResourceBundle: Loading Bundle...");
+        logger.debug("Invoking getResourceBundle by Loading Bundle: " + baseName + "...");
         ResourceBundle bundle = ResourceBundle.getBundle(baseName, (locale == null) ? Locale.getDefault() : locale);
         logger.debug("Resouce Bundle loaded successfully");
         return bundle;
@@ -62,7 +62,7 @@ public final class ResourceBundleUtil {
      * @return the string for the given key.
      */
     public static String getStringMessage(String key, String baseName, Locale locale) {
-        logger.debug("Invoking getStringMessage...");
+        logger.debug("Invoking getStringMessage for key: " + key + " and bundle: " + baseName + "...");
         try {
             ResourceBundle bundle = getResourceBundle(baseName, locale);
             return bundle.getString(key);

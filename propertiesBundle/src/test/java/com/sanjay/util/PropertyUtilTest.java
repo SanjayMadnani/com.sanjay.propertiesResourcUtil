@@ -9,46 +9,27 @@
  * See the GNU General Public License V2 for more details. */
 package com.sanjay.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
+import com.sanjay.constants.MessagesConstants;
+
 /**
+ * Test case for PropertyUtil.
+ * 
  * @author SANJAY
- *
+ * @see PropertyUtil
  */
 public class PropertyUtilTest {
-
-    /**
-     * @throws java.lang.Exception
-     */
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    /**
-     * @throws java.lang.Exception
-     */
-    @After
-    public void tearDown() throws Exception {
-    }
-
     /**
      * Test method for {@link com.sanjay.util.PropertyUtil#getValue(java.lang.String, java.lang.String)}.
      */
     @Test
     public final void testGetValue() {
-        fail("Not yet implemented");
-    }
-
-    /**
-     * Test method for {@link com.sanjay.util.PropertyUtil#getFormatedStringValue(java.lang.String, java.lang.String, java.lang.Object[])}.
-     */
-    @Test
-    public final void testGetFormatedStringValue() {
-        fail("Not yet implemented");
+        assertEquals("root1", (String) PropertyUtil.getValue("db.password", MessagesConstants.PROPERTY_FILE));
+        assertEquals("root",
+                (String) PropertyUtil.getValue("db.password", "src/main/resources", MessagesConstants.PROPERTY_FILE));
     }
 
 }

@@ -10,9 +10,10 @@
 package com.sanjay.util;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import org.junit.Test;
+
+import com.sanjay.constants.MessagesConstants;
 
 /**
  * Test case for ResourceBundleUtil.
@@ -28,7 +29,8 @@ public class ResourceBundleUtilTest {
      */
     @Test
     public final void testGetString() {
-        assertEquals("hello", ResourceBundleUtil.getStringMessage("hi", "log-Config", null));
+        assertEquals("EMAIL1000: Email Id is Empty.", ResourceBundleUtil.getStringMessage(
+                MessagesConstants.EMPTY_MAIL_ID, MessagesConstants.BUNDLE_FILE, null));
     }
 
     /**
@@ -38,7 +40,11 @@ public class ResourceBundleUtilTest {
      */
     @Test
     public final void testGetFormatedMessage() {
-        fail("Not yet implemented");
+        String formatedMessage =
+                ResourceBundleUtil.getFormatedMessage(MessagesConstants.REGISTRATION_SUCCESS,
+                        MessagesConstants.BUNDLE_FILE, null, "Name1", "11001121");
+        String expectedResult = "Dear Name1, Your Registration Id is 11001121.";
+        assertEquals(expectedResult, formatedMessage);
     }
 
 }

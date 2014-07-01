@@ -15,17 +15,26 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.sanjay.constants.MessagesConstants;
+
 /**
+ * Test case for PropertyUtil.
+ * 
  * @author SANJAY
- *
+ * @see PropertyUtil
  */
 public class PropertyUtilTest {
+
+    private PropertyUtil propertyUtil1;
+    private PropertyUtil propertyUtil2;
 
     /**
      * @throws java.lang.Exception
      */
     @Before
     public void setUp() throws Exception {
+        propertyUtil2 = new PropertyUtil(MessagesConstants.PROPERTY_FILE);
+        propertyUtil1 = new PropertyUtil("src/main/resources", MessagesConstants.PROPERTY_FILE);
     }
 
     /**
@@ -33,14 +42,8 @@ public class PropertyUtilTest {
      */
     @After
     public void tearDown() throws Exception {
-    }
-
-    /**
-     * Test method for {@link com.sanjay.util.proper.PropertyUtil#PropertyUtil(java.lang.String)}.
-     */
-    @Test
-    public final void testPropertyUtil() {
-        fail("Not yet implemented");
+        propertyUtil1 = null;
+        propertyUtil2 = null;
     }
 
     /**
@@ -48,15 +51,7 @@ public class PropertyUtilTest {
      */
     @Test
     public final void testGetValue() {
-        fail("Not yet implemented");
+        assertEquals("smtp.gmail.com", propertyUtil1.getValue("email.smpt.host"));
+        assertEquals("smtp.yahoo.com", propertyUtil2.getValue("email.smpt.host"));
     }
-
-    /**
-     * Test method for {@link com.sanjay.util.proper.PropertyUtil#getFormatedStringValue(java.lang.String, java.lang.Object[])}.
-     */
-    @Test
-    public final void testGetFormatedStringValue() {
-        fail("Not yet implemented");
-    }
-
 }
