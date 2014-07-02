@@ -1,0 +1,8 @@
+cd propertiesBundle
+language: java
+jdk:
+- openjdk6
+  - oraclejdk7
+  - openjdk7
+notifications:
+  email: false
