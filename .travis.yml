@@ -1,5 +1,5 @@
 language: java
-script: "mvn -f .propertiesBundle/pom.xml install"
+script: "mvn -f propertiesBundle/pom.xml install"
 jdk:
 - openjdk6
   - oraclejdk7
