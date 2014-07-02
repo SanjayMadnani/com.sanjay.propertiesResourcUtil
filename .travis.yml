@@ -1,4 +1,6 @@
 language: java
 script: "mvn -f propertiesBundle/pom.xml clean install"
+jdk:
+- openjdk6
 notifications:
   email: sanjay.madnani@outlook.com
