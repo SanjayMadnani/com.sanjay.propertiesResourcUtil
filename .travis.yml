@@ -1,0 +1,8 @@
+language: java
+script: "mvn -f .propertiesBundle/pom.xml install"
+jdk:
+- openjdk6
+  - oraclejdk7
+  - openjdk7
+notifications:
+  email: false
