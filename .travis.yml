@@ -1,4 +1,4 @@
 language: java
 script: "mvn -f propertiesBundle/pom.xml clean install"
 notifications:
-  email: sanjay.madnani@outlook.com
+  email: false
