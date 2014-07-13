@@ -1,4 +1,4 @@
-Description is availabe in below url:
+For Description Refer:
 http://sanjaymadnani.wordpress.com/2014/07/11/property-utility-and-resource-bundle-utility/
 
 For more blogs vist:
